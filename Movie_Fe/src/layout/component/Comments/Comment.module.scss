@@ -1,0 +1,132 @@
+.comment {
+    margin-top: 50px;
+}
+
+.titleComment {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.contentBox {
+    padding-bottom: 30px;
+    border-bottom: 2px solid rgba(22, 24, 35, 0.09);
+}
+
+.avatarImg {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.InputComment {
+    flex: 1;
+    height: 4.5rem;
+    font-size: 2rem;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    margin: 0 15px;
+    caret-color: var(--primary);
+    border-radius: 20px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+
+.btnSend {
+    background-color: var(--primary);
+    border-radius: 8px;
+    color: white;
+    padding: 5px 15px;
+    font-size: 1.6rem;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.iconSent {
+}
+
+.containComment {
+    margin-top: 30px;
+    transition: all ease 0.2s;
+}
+
+.commentItem {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.commentItem-wrap {
+    height: auto;
+    margin: 0 20px;
+    max-width: 63vw;
+    background-color: rgba(22, 24, 35, 0.06);
+    padding: 10px;
+    border-radius: 20px;
+    h2 {
+        font-size: 1.7rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    .contentComment {
+        font-size: 1.8rem;
+    }
+    button {
+        font-size: 1.4rem;
+        float: right;
+        color: white;
+        background-color: var(--primary);
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+}
+
+.timeComment {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-left: 30px;
+}
+
+.iconSend {
+    padding: 10px 10px 10px 0;
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.ellipsisIcon {
+    margin-top: 15px;
+    font-size: 2rem;
+}
+
+.menu-popper {
+}
+
+.btn {
+    display: block;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin-top: -8px;
+    background-color: transparent;
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
+
+.textNote {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.8rem;
+    text-align: center;
+
+    a {
+        color: var(--primary);
+    }
+}
+
+.noMore {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 2rem;
+}

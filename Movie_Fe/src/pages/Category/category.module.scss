@@ -1,0 +1,38 @@
+.wrapper {
+}
+
+.section {
+    margin-top: 25px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 2.6rem;
+    margin-left: 15px;
+    // border-bottom:2.5px solid var(--primary);
+}
+
+.seemore {
+    color: var(--primary);
+    &:hover {
+        .more {
+            text-decoration: underline;
+        }
+    }
+}
+
+.more {
+    font-size: 1.5rem;
+    font-weight: 700 !important;
+    display: inline-block;
+}
+
+.icon {
+    padding-left: 7px;
+    font-size: 1.25rem;
+}

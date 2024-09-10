@@ -1,0 +1,150 @@
+.wrapper {
+    margin-left: 15px;
+}
+
+.videofilm {
+    border-radius: 10px;
+}
+
+.InforDetail {
+    display: flex;
+    max-width: 100%;
+    margin-top: 25px;
+}
+
+.poster {
+    height: 40vh;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+.content {
+    padding-right: 10px;
+}
+.title {
+    font-size: 2.7rem;
+    font-weight: 600;
+}
+
+.genres {
+    margin-top: 10px;
+    display: flex;
+}
+.genres-item {
+    background-color: rgba(22, 24, 35, 0.06);
+    margin-bottom: 10px;
+
+    padding: 6px 8px;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    margin-right: 7px;
+    // margin-bottom: 10px;
+}
+
+.rate {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    .icon {
+        font-size: 1.7rem;
+        margin-right: 5px;
+    }
+}
+
+.summary {
+    font-size: 1.8rem;
+    h4 {
+        font-size: 1.9rem;
+        color: var(--primary);
+    }
+}
+
+.overview {
+    @media (min-width: 740px) {
+        max-height: 160px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 6;
+    }
+}
+
+.Similar {
+    max-width: 100%;
+    margin-top: 60px;
+}
+
+.titleOverview {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.Trailer {
+    max-width: 100%;
+    height: 400px;
+    margin-top: 50px;
+}
+
+.allSeaon {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.season {
+    background-color: var(--primary);
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 8px;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.allEpisode {
+    display: inline-flex;
+    flex-wrap: wrap;
+    // grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+    max-height: 400px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid rgb(209, 207, 207);
+    border-radius: 10px;
+    overflow-y: overlay;
+}
+.episode {
+    background-color: var(--primary);
+    height: 30px;
+    width: 80px;
+
+    text-align: center;
+    line-height: 30px;
+    border-radius: 8px;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.titleTv {
+    font-size: 4rem;
+    margin-top: 20px;
+}
+
+@media (max-width: 740px) {
+    .videofilm,
+    .Trailer {
+        height: 300px;
+    }
+    .poster {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .videofilm,
+    .Trailer {
+        height: 250px;
+    }
+}

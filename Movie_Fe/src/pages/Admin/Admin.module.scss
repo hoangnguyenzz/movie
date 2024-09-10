@@ -1,0 +1,77 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+.Sidebar {
+    flex-basis: 200px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    background-color: rgba(22, 24, 35, 0.06);
+    border-radius: 7px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(209, 207, 207);
+}
+
+.logo-img {
+    height: 40px;
+}
+.first-titl {
+    color: var(--primary);
+}
+.last-titl {
+    color: black;
+}
+
+.nav-link {
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    border-radius: 7px;
+    margin: 5px 0;
+    padding: 7px 0;
+    opacity: 0.9;
+
+    &.active {
+        background-color: var(--primary);
+        color: white;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.btn {
+    padding-top: 15px;
+    border-top: 1px solid rgb(209, 207, 207);
+    display: flex;
+    justify-content: center;
+}
+.btn-logout {
+    display: block;
+    width: 40%;
+    color: white;
+    background-color: var(--primary);
+    padding: 8px;
+    border-radius: 7px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.Content {
+    margin-left: 10px;
+    flex: 1;
+}

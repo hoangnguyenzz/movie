@@ -1,0 +1,25 @@
+.genres {
+    font-size: 17px;
+
+    &_form {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    input,
+    button,
+    select {
+        font-size: inherit;
+    }
+
+    .movie_btn_submit {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+        background-color: var(--primary);
+        padding: 8px;
+        border-radius: 7px;
+    }
+}

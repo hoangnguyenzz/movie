@@ -1,0 +1,176 @@
+.contain {
+    display: flex;
+    max-width: 100%;
+    margin-top: -150px;
+    position: relative;
+    left: 7%;
+    cursor: pointer;
+}
+
+.content {
+    margin-left: 20px;
+}
+.poster {
+    height: 40vh;
+    border-radius: 10px;
+}
+
+.title {
+    align-self: center;
+    font-size: 4rem;
+    // height: 60px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.titleInfor {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.genres {
+    display: flex;
+    min-height: 62px;
+}
+.genres-item {
+    align-self: center;
+    display: flex;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 10px 0;
+    margin-right: 10px;
+    color: white;
+    padding: 5px 7px;
+    border: 1px solid white;
+    border-radius: 20px;
+    &:hover {
+        color: var(--primary);
+        border-color: var(--primary);
+    }
+}
+
+.Infor {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    span {
+        color: var(--text-color);
+        font-size: 1.8rem;
+    }
+}
+
+.wrapWatchFav {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playBtn,
+.btnFavorite {
+    height: 35px;
+    width: 130px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 10px;
+    margin: 10px 0;
+    .icon {
+        margin-right: 5px;
+    }
+}
+
+.playBtn {
+    font-size: 1.4rem;
+    color: black;
+    background-color: #f8bf2f;
+    margin-left: 10px;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.CastList {
+    max-width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    h2 {
+        font-size: 2.9rem;
+        margin-bottom: 10px;
+    }
+}
+
+.summary {
+    max-width: 100%;
+    margin-top: 50px;
+}
+
+.titleOverview {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+.overview {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+.Trailer {
+    max-width: 100%;
+    height: 500px;
+    margin-top: 50px;
+}
+
+.Similar {
+    max-width: 100%;
+    margin-top: 90px;
+}
+
+@media (max-width: 740px) {
+    // .videofilm {
+    //     height: 200px;
+    // }
+    .poster {
+        display: none;
+    }
+    .contain {
+        left: 0;
+        .content {
+            .title {
+                // margin-top: -10px;
+                font-size: 2.8rem;
+            }
+            .genres {
+                margin-top: -10px;
+            }
+            .genres-item {
+                // margin-top: -10px;
+                font-size: 1.5rem;
+                display: inline-flex;
+            }
+        }
+    }
+
+    .Infor {
+        margin-left: -20px;
+        margin-top: 50px;
+    }
+    .Trailer,
+    .CastList,
+    .summary,
+    .Similar {
+        // margin-right: 10px;
+        left: 0;
+    }
+
+    .Trailer {
+        height: 300px;
+    }
+}

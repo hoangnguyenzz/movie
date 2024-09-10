@@ -1,0 +1,100 @@
+@import 'normalize.css';
+
+:root {
+    --primary: #fe2c55;
+    --text-color: #161823;
+    --boder-color: #ccc;
+    --header-default-height: 60px;
+}
+
+html {
+    font-size: 62.5% !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    color: var(--text-color);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    &:hover {
+        color: currentColor;
+    }
+}
+
+[contenteditable] {
+    caret-color: var(--primary);
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+iframe {
+    border: 0;
+}
+
+.admin_container {
+    padding-left: 5px;
+
+    padding-right: 15px;
+    font-size: 1.6rem;
+    max-height: 100vh;
+    overflow: overlay;
+
+    & > table {
+        width: 100%;
+    }
+
+    a,
+    button {
+        font-size: 15px !important;
+        min-height: 32px;
+        margin-right: 5px;
+    }
+}
+
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 0px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.openModal{
+    display: flex;
+}

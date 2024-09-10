@@ -1,0 +1,83 @@
+.wrapper {
+    margin-left: 15px;
+    height: 100%;
+}
+.movieList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 3rem;
+
+    .movieItem {
+        transform: scale(1);
+        transition: all 0.15s linear;
+        &:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+    }
+}
+.title {
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    padding: 20px 0;
+    background-color: var(--primary);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.wrapiconload {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+.iconLoading {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    color: rgba(22, 24, 35, 0.5);
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translate(-50%, -50%) rotate(0);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.seeMore {
+    //div no chiem 100% nen cho vo text-alight cho de
+    text-align: center;
+}
+.noMore {
+    text-align: center;
+
+    font-size: 2rem;
+}
+.moreBtn {
+    width: 100px;
+    padding: 10px 0;
+    color: white;
+    background-color: var(--primary);
+    border-radius: 92px;
+    &:hover {
+        opacity: 0.8;
+    }
+    .icon {
+        margin-left: 4px;
+    }
+}
+
+@media (max-width: 740px) {
+    .movieList {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

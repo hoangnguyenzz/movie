@@ -1,0 +1,15 @@
+.wrapper {
+    width: 100%;
+    max-height: min((100vh - 96px) - 60px, 734px);
+    min-height: 50px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    border-radius: 8px;
+    padding-top: 8px;
+    overflow-y: overlay;
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+}

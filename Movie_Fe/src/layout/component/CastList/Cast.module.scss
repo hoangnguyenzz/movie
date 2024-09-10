@@ -1,0 +1,41 @@
+.wrapper {
+    .swiperItem {
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &:hover{
+            opacity: 0.9;
+            span{
+                color: var(--primary);
+            }
+        }
+    }
+    .castImg {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 9999px;
+        border: 2px solid rgb(209, 207, 207);
+    }
+    span {
+        color: var(--text-color);
+        font-size: 1.8rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 740px) {
+    .wrapper {
+        left: 0;
+        .swiperItem {
+            width: 30%;
+        }
+    }
+
+    .castImg {
+        width: 140px;
+        height: 140px;
+    }
+}

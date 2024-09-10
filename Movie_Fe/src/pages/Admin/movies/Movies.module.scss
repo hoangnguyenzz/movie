@@ -1,0 +1,84 @@
+.movie {
+    font-size: 16px;
+    padding-top: 20px;
+
+    &_utils {
+        display: flex;
+    }
+    &_search-box {
+        margin-left: 20px;
+        background-color: #f0f0f0;
+        border-radius: 7px;
+        overflow: hidden;
+        input {
+            padding: 10px 10px;
+            min-width: 250px;
+            caret-color: var(--primary);
+            background-color: transparent;
+        }
+        button {
+            height: 100%;
+            padding: 0 15px;
+            margin-right: -5px !important;
+            color: rgba(22, 24, 35, 0.5);
+            border-left: 1px solid rgba(22, 24, 35, 0.08);
+            &:hover {
+                background-color: rgba(22, 24, 35, 0.03);
+            }
+        }
+    }
+
+
+    &_select-form{
+        display: unset !important;
+        width: 200px!important;
+        height: 40px;
+        margin-left: auto;
+        font-size: 1.5rem !important;
+    }
+
+    &_img {
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &_poster_path {
+        height: 90px;
+    }
+    &_backdrop_path {
+        height: 90px;
+    }
+
+    &_form {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+
+        input,
+        select,
+        textarea {
+            font-size: 16px;
+            min-height: 40px;
+        }
+
+        &_checkbox > input {
+            min-height: unset !important;
+        }
+
+        &_genres {
+            max-height: 40px;
+        }
+    }
+
+    &_btn_submit {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 20%;
+        color: white;
+        background-color: var(--primary);
+        padding: 8px;
+        border-radius: 7px;
+    }
+}
+

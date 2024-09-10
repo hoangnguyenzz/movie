@@ -1,0 +1,10 @@
+.page-item {
+   text-align: center;
+
+    & > a {
+        color: black;
+        display: block;
+        height: 100%;
+        margin-right: 0 !important;
+    }
+}
