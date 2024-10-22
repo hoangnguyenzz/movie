@@ -93,4 +93,26 @@ public class MovieController {
         apiResponse.setResults(movieService.getMoviesByType(category,type));
         return apiResponse;
     }
+    @GetMapping("/genre/{id}")
+    public ApiResponse<List<MovieResponse>> getByType(@PathVariable String id) {
+        ApiResponse<List<MovieResponse>> apiResponse = new ApiResponse<>();
+        apiResponse.setResults(movieService.getMovieByGenre(id));
+        return apiResponse;
+    }
+
+    @GetMapping("getall")
+    public ApiResponse<List<MovieResponse>> getAllById( @RequestParam List<String> id) {
+
+        ApiResponse<List<MovieResponse>> apiResponse = new ApiResponse<>();
+        apiResponse.setResults(movieService.getAllById(id));
+        return apiResponse;
+    }
+    @GetMapping("/search-movie")
+    public ApiResponse<List<MovieResponse>> searchMovie(@RequestParam(defaultValue = "") String keyword
+                                                   ) {
+        ApiResponse<List<MovieResponse>> apiResponse = new ApiResponse<>();
+
+        apiResponse.setResults(movieService.searchMovie(keyword));
+        return apiResponse;
+    }
 }

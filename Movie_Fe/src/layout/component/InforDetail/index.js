@@ -8,27 +8,29 @@ import { faHeart, faPlay, faRemove } from '@fortawesome/free-solid-svg-icons';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '~/context';
 
-import { addFavouriteMovie, getFavoritesMovies } from '~/apiService/user';
+import { addFavouriteMovie, deleteFavouriteMovie, getFavoritesMovies } from '~/apiService/user';
 import SimilarMovie from '../SimilarMovie';
 import { getMulti } from '~/apiService/genres';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useParams } from 'react-router-dom';
 
 const cs = classNames.bind(styles);
 
 function InforDetail({ width, movieDetail }) {
+    // const { id } = useParams();
     const { showToastMessage } = useContext(AuthContext);
     const [genres, setGenres] = useState([]);
     const navigate = useNavigate();
 
     const user = JSON.parse(localStorage.getItem('user'));
+    const id = JSON.parse(localStorage.getItem('id'));
     const [userFavoriteMovies, setUserFavoriteMovies] = useState([]);
 
     const getUserFavoritesMovies = async () => {
         if (user) {
             try {
-                const result = await getFavoritesMovies(user.id);
-                if (result.success) {
-                    setUserFavoriteMovies(result.data);
+                const result = await getFavoritesMovies(id,user);
+                if (result.code === 1000) {
+                    setUserFavoriteMovies(result.results);
                 }
             } catch (error) {
                 console.log(error);
@@ -41,9 +43,26 @@ function InforDetail({ width, movieDetail }) {
     }, []);
 
     const handleAddFavoriteMovie = async () => {
+        let res;
         if (user) {
-            const res = await addFavouriteMovie(movieDetail._id, user.id);
-            if (res.success) {
+
+            const data = {
+                movieId: movieDetail.id,
+                userId: id
+              };
+              
+            if(userFavoriteMovies.includes(movieDetail.id)){
+                 res = await deleteFavouriteMovie(data,user);
+            }else{
+                res = await addFavouriteMovie(id,movieDetail.id,user);
+            }
+
+            
+
+            console.log(movieDetail.id+id+" ---kaka")
+
+            if (res.code===1000) {
+
                 getUserFavoritesMovies();
             } else {
                 console.log(res);
@@ -55,12 +74,13 @@ function InforDetail({ width, movieDetail }) {
 
     useEffect(() => {
         const getGenres = async () => {
-            try {
-                const dataGenres = await getMulti(movieDetail.slug);
-                setGenres(dataGenres.data);
-            } catch (error) {
-                console.log(error);
-            }
+            // try {
+            //     const dataGenres = await getMulti(movieDetail.slug);
+            //     setGenres(dataGenres.data);
+            // } catch (error) {
+            //     console.log(error);
+            // }
+            setGenres(movieDetail.genres)
         };
         getGenres();
     }, []);
@@ -68,7 +88,7 @@ function InforDetail({ width, movieDetail }) {
         <div>
             <div className={cs('contain')}>
                 <img
-                    src={Img.posterImg(movieDetail.poster_path || movieDetail.backdrop_path)}
+                    src={'http://localhost:8080/images/'+(movieDetail.poster_path || movieDetail.backdrop_path)}
                     className={cs('poster')}
                     alt=""
                 />
@@ -84,7 +104,8 @@ function InforDetail({ width, movieDetail }) {
 
                     <div className={cs('Infor')}>
                         <div className={width < 740 ? cs('wrapWatchFav') : 'btnOnly'}>
-                            {userFavoriteMovies.includes(movieDetail._id) ? (
+                            {console.log("Check favorite  list "+userFavoriteMovies)}
+                            {userFavoriteMovies.includes(movieDetail.id) ? (
                                 <button
                                     className={cs('btnFavorite')}
                                     onClick={handleAddFavoriteMovie}

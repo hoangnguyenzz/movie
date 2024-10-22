@@ -1,8 +1,14 @@
 import instance from './instance';
 
-export const getCommentByMovie = (id) => {
-    const url = '/comment/get-comment/' + id;
-    return instance.get(url);
+export const getCommentByMovie = (id,token) => {
+    const url = '/comment/getbymovie/' + id;
+    return instance.get(url,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
 };
 
 export const getCountCommentMonth = () => {
@@ -20,17 +26,33 @@ export const getCountComments = (id) => {
     return instance.get(url);
 };
 
-export const postComment = (data) => {
-    const url = '/comment/post-comment';
-    return instance.post(url, data);
+export const postComment = (data,token) => {
+    const url = '/comment';
+    return instance.post(url, data,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
 };
 
-export const updateComment = (id,data) => {
-    const url = '/comment/update-comment/' + id;
-    return instance.put(url,data);
+export const updateComment = (id,data,token) => {
+    const url = '/comment/' + id;
+    return instance.put(url,data,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 };
 
-export const deleteComment = (id) => {
-    const url = '/comment/delete-comment/' + id;
-    return instance.delete(url);
+export const deleteComment = (id,token) => {
+    const url = '/comment/' + id;
+    return instance.delete(url,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 };

@@ -78,9 +78,15 @@ export const getDetail = (email) => {
     return instance.get(url);
 };
 
-export const getFavoritesMovies = (id) => {
-    const url = '/user/get-favorites-movie/' + id;
-    return instance.get(url);
+export const getFavoritesMovies = (id,token) => {
+    const url = '/favorite/check/' + id;
+    return instance.get(url,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        } 
+    );
 };
 
 
@@ -134,9 +140,27 @@ export const editUser = (data, userEmail) => {
     return instance.put(url, data);
 };
 
-export const addFavouriteMovie = (movieId, userId) => {
-    const url = `/user/add-favourite`;
-    return instance.post(url, { movieId, userId });
+export const addFavouriteMovie = (user, movie,token) => {
+    const url = `/favorite`;
+    return instance.post(url, { user, movie },
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+};
+
+export const deleteFavouriteMovie = (data,token) => {
+    const url = `/favorite?movieId=${data.movieId}&userId=${data.userId}`;
+    
+    return instance.delete(url, 
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
 };
 
 export const addHistoryMovie = (movieId, userId) => {

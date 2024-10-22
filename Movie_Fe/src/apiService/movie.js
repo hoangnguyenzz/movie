@@ -106,15 +106,9 @@ export const deleteMovie = (id,token) => {
     );
 };
 
-export const getMovieById = (id , token ) => {
+export const getMovieById = (id ) => {
     const url = '/movie/'+id ;
-    return instance.get(url , 
-        {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        } 
-    )
+    return instance.get(url)
 }
 
 export const searchMovie = (keyword , currPage , token) => {
@@ -129,15 +123,9 @@ export const searchMovie = (keyword , currPage , token) => {
     )
 }
 
-export const getMovieByCategory = (category, token) => {
+export const getMovieByCategory = (category) => {
     const url = `/movie/category/${category}`;
-    return instance.get(url, 
-        {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-        }
-    )
+    return instance.get(url)
 }
 
 // export const getTypeMovie = (category, type, token) => {
@@ -154,14 +142,28 @@ export const getMovieByCategory = (category, token) => {
 //     );
 // }
 
-export const getTypeMovie = (category, type, token) => {
+export const getTypeMovie = (category, type) => {
     // Thay đổi URL để gửi 'type' qua query parameters
     const url = `/movie/type/${category}?type=${encodeURIComponent(type)}`;
     
     // Gửi yêu cầu GET với header Authorization
-    return instance.get(url, {
-        headers: {
-            Authorization: `Bearer ${token}`,
+    return instance.get(url);
+};
+
+export const getMovieByGenre = (id ) => {
+   
+    const url = `/movie/genre/${id}`;
+    
+    return instance.get(url);
+};
+
+export const getAllMovieById = (token,data) => {
+    const url = `/movie/getall?id=${data.join(',')}`;  // Nối các id thành chuỗi cách nhau bởi dấu phẩy
+    return instance.get(url,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         }
-    });
+    );
 };

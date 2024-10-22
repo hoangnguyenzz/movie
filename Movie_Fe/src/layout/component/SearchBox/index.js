@@ -23,7 +23,8 @@ function SearchBox() {
 
     const debouncedValue = useDebounce(inputValue, 500);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
+        console.log("debouncedValue:", debouncedValue);
         if (!debouncedValue.trim()) {
             //reset lai mang sau khi xoa
             setSearchResult([]);
@@ -33,9 +34,10 @@ function SearchBox() {
         const loadlistresult = async () => {
             setLoading(true);
 
-            const result = await requestApi.getSearch({ params: { keyword: debouncedValue } });
-            setSearchResult(result.data);
+            const result = await requestApi.getSearch(debouncedValue);
+            setSearchResult(result.results);
             setLoading(false);
+            console.log("Check chut list movie :"+ result.results)
         };
 
         loadlistresult();

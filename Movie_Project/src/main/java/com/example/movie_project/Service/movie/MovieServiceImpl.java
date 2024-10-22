@@ -159,4 +159,15 @@ public class MovieServiceImpl implements MovieService{
                 throw new IllegalArgumentException("Invalid movie type: " + type);
         }
     }
+    public List<MovieResponse> getMovieByGenre(String id){
+        var movies = movieRepository.findMoviesByGenreId(id);
+        return movies.stream().map(movieMapper::toMovieResponse).toList();
+    }
+
+    public List<MovieResponse> getAllById(List<String> id){
+        return movieRepository.findAllById(id).stream().map(movieMapper::toMovieResponse).toList();
+    }
+    public List<MovieResponse> searchMovie(String keywork) {
+        return movieRepository.searchMovie(keywork).stream().map(movieMapper::toMovieResponse).toList();
+    }
 }

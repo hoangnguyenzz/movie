@@ -23,7 +23,7 @@ function Sidebar({ className }, ref) {
     useEffect(() => {
         const genAllGenres = async () => {
             try{
-            const genres = await getAll(1,100,user);
+            const genres = await getAll(1,100);
             setGenres(genres.results.content);
             
                 // const userRole = await getDetail(user.email);

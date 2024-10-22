@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import requestApi from '~/apiService';
+import { getMovieById } from '~/apiService/movie';
 // import Season from './Season';
 import Episode from './Episode';
 import { Img } from '~/apiService/instance';
@@ -36,10 +37,12 @@ function WatchMovie() {
     useEffect(() => {
         async function getDeTailMovie() {
             try {
-                const result = await requestApi.getDetails(slug);
-                const dataGenres = await getMulti(result.data.slug);
-                setGenres(dataGenres.data);
-                setMovieDetail(result.data);
+               
+                    const result = await getMovieById(id);
+                    setMovieDetail(result.results);
+                //const dataGenres = await getMulti(result.data.slug);
+                setGenres(result.results.genres);
+                
                 setLoading(false);
             } catch (error) {
                 console.log(error);
@@ -68,7 +71,7 @@ function WatchMovie() {
         if (user && movieDetail) {
             const handleAddHistory = async () => {
                 try {
-                    await addHistoryMovie(movieDetail._id, user.id);
+                    await addHistoryMovie(movieDetail.id, user.id);
                 } catch (error) {
                     console.log(error);
                 }
@@ -99,7 +102,7 @@ function WatchMovie() {
                             <Skeleton className={cs('poster')} style={{ width: '200px' }} />
                         ) : (
                             <img
-                                src={Img.posterImg(movieDetail.poster_path || movieDetail.backdrop_path)}
+                                src={'http://localhost:8080/images/'+movieDetail.poster_path ||'http://localhost:8080/images/'+ movieDetail.backdrop_path}
                                 className={cs('poster')}
                                 alt=""
                             ></img>
@@ -137,7 +140,7 @@ function WatchMovie() {
                                 </div>
                                 <div className={cs('summary')}>
                                     <h4>Tóm tắt</h4>
-                                    <p className={cs('overview')}>{movieDetail.overview}</p>
+                                    <p className={cs('overview')}>{movieDetail.overView}</p>
                                 </div>
                             </div>
                         )}
@@ -159,11 +162,11 @@ function WatchMovie() {
 
                     <div className={cs('Similar')}>
                         <h4 className={cs('titleOverview')}>Đề xuất</h4>
-                        <SimilarMovie category={movieDetail.category} slug={movieDetail.slug} />
+                        <SimilarMovie category={category} slug={movieDetail.slug} />
                     </div>
 
                     <div>
-                        <Comment MovieId={movieDetail._id} />
+                        <Comment MovieId={movieDetail.id} />
                     </div>
                 </>
             )}

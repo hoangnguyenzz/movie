@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import styles from './Detail.module.scss';
 import classNames from 'classnames/bind';
 
+import { getMovieById } from '~/apiService/movie';
 import requestApi from '~/apiService';
 import { Img } from '~/apiService/instance';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,19 +13,20 @@ import InforDetail from '~/layout/component/InforDetail';
 const cs = classNames.bind(styles);
 
 function Detail() {
-    const { category, slug } = useParams();
+    const { id , category } = useParams();
     const [movieDetail, setMovieDetail] = useState([]);
     const [loading, setLoading] = useState(true);
     const [width, setWidth] = useState(window.innerWidth);
+    const user = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
         async function getDeTailMovie() {
-            const result = await requestApi.getDetails(slug);
-            setMovieDetail(result.data);
+            const result = await getMovieById(id);
+            setMovieDetail(result.results);
             setLoading(false);
         }
         getDeTailMovie();
-    }, [slug]);
+    }, [id]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -47,12 +49,12 @@ function Detail() {
                     <div
                         className={cs('backgroudImg')}
                         style={{
-                            backgroundImage: `url("${Img.baseImg(movieDetail.backdrop_path)}")`,
+                            backgroundImage: `url("${Img.baseImg('http://localhost:8080/images/'+movieDetail.backdrop_path)}")`,
                         }}
                     >
                         {width > 740 && (
                             <Link
-                                to={`/${movieDetail.category || category}/${movieDetail.id}/watch/${movieDetail.slug}`}
+                                to={`/${movieDetail.category || category}/watch/${movieDetail.id}`}
                                 className={cs('playBtn')}
                             >
                                 <FontAwesomeIcon className={cs('icon')} icon={faPlayCircle} />

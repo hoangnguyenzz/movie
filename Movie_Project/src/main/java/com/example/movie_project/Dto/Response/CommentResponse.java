@@ -1,6 +1,7 @@
-package com.example.movie_project.Entity;
+package com.example.movie_project.Dto.Response;
 
-import jakarta.persistence.*;
+import com.example.movie_project.Entity.Movie;
+import com.example.movie_project.Entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,23 +9,15 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-public class Comment   {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+public class CommentResponse {
     private String id;
     private String content;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
     private Movie movie;
     private LocalDateTime createdAt;
 }

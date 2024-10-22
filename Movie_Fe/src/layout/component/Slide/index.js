@@ -25,7 +25,7 @@ function SlideShow({ category }) {
     useEffect(
         function () {
             async function fetchMovie() {
-                const result = await getMovieByCategory(category,JSON.parse(localStorage.getItem('user')));
+                const result = await getMovieByCategory(category);
                 setMovieItems(getMultipleRandom(result.results, 5));
                 setLoading(false);
                 // const result = await requestApi.getTypeTV('popular', { params: { page: 1 } });

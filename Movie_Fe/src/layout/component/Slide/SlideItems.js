@@ -15,7 +15,7 @@ function SlideItems({ category, item }) {
             <div className={cs('content')}>
                 <h2 className={cs('title')}>{item.title || item.name}</h2>
                 <div className={cs('overview')}>{item.overview}</div>
-                <button className={cs('watchbtn')} onClick={() => Navigate(`/${category ?? 'tv'}/${item.slug}`)}>
+                <button className={cs('watchbtn')} onClick={() => Navigate(`/detail/${item.id}`)}>
                     Xem ngay
                 </button>
             </div>

@@ -17,7 +17,7 @@ function Episode({ movieDetail }) {
     //     episode = new Array(movieDetail.seasons[s].episode_count).fill(null);
     // }
 
-        const episode = Array(movieDetail.episodes).fill(null);
+        const episode = Array(movieDetail.episodeCount).fill(null);
 
 
     return (

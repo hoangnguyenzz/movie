@@ -21,6 +21,9 @@ public enum ErrorCode {
     PASSWORD_WRONG(1009,"Password wrong",HttpStatus.BAD_REQUEST),
     MOVIE_EXISTED(1010,"Movie already existed", HttpStatus.BAD_REQUEST),
     MOVIE_NOT_FOUND(1011,"Movie not found", HttpStatus.BAD_REQUEST),
+    FAVORITE_EXISTED(1012,"This movie already is favorite", HttpStatus.BAD_REQUEST),
+    FAVORITE_NOT_FOUND(1013,"Favorite not found", HttpStatus.BAD_REQUEST),
+    COMMENT_NOT_FOUND(1014,"Comment not found", HttpStatus.BAD_REQUEST),
     ;
 private int code;
 private String message;

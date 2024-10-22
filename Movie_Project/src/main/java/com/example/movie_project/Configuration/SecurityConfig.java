@@ -30,6 +30,8 @@ public class SecurityConfig {
                                         , "/auth/login", "/auth/logout", "/auth/refresh"  ).permitAll()
 //                        .requestMatchers(HttpMethod.GET , "/users").hasRole(Role.ADMIN.name())
                                 .requestMatchers("/images/**").permitAll()
+                                .requestMatchers("/movie/category/**","/movie/type/**","/movie/genre/**").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/genre","/movie/{id}","/movie/search-movie").permitAll()
                                 .anyRequest().authenticated()
                 );
 

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -13,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table( uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "movie_id"})})
 public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -25,5 +27,9 @@ public class Favorite {
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    private Date createdAt= new Date();
+    private LocalDateTime createdAt;
+
+//    public Favorite(){
+//        this.createdAt = LocalDateTime.now();
+//    }
 }

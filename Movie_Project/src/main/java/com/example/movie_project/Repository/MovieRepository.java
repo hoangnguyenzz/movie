@@ -22,4 +22,6 @@ public interface MovieRepository extends JpaRepository<Movie, String> {
     @Query("SELECT m FROM Movie m JOIN m.genres g WHERE g.id = :genreId")
     List<Movie> findMoviesByGenreId(@Param("genreId") String genreId);
 
+    @Query("SELECT m FROM Movie m WHERE LOWER(m.name) LIKE LOWER(CONCAT('%', :name, '%'))")
+    List<Movie> searchMovie(@Param("name") String name);
 }

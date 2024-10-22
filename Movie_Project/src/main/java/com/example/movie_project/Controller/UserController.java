@@ -10,12 +10,10 @@ import com.example.movie_project.Entity.User;
 import com.example.movie_project.Exception.AppException;
 import com.example.movie_project.Exception.ErrorCode;
 import com.example.movie_project.Repository.UserRepository;
-import com.example.movie_project.Service.user.UserService;
 import com.example.movie_project.Service.user.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,10 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController

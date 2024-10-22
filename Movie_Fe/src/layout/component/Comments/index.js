@@ -27,11 +27,14 @@ function Comment({ MovieId }) {
 
     const { showToastMessage } = useContext(AuthContext);
     const user = JSON.parse(localStorage.getItem('user'));
+    const avatar = JSON.parse(localStorage.getItem('avatar'));
+    const id = JSON.parse(localStorage.getItem('id'));
 
     const getComment = async () => {
         try {
-            const res = await getCommentByMovie(MovieId);
-            setComments(res.data.filter((data) => data.userId));
+            const res = await getCommentByMovie(MovieId,user);
+            // setComments(res.results.filter((data) => data.content));
+            setComments(res.results)
         } catch (error) {
             console.log(error);
         }
@@ -46,10 +49,10 @@ function Comment({ MovieId }) {
         if (cmtValueInput.trim()) {
             try {
                 await postComment({
-                    userId: user.id,
-                    movieId: MovieId,
+                    user: id,
+                    movie: MovieId,
                     content: cmtValueInput,
-                });
+                },user);
                 getComment();
                 setCmtValueInput('');
             } catch (error) {
@@ -60,11 +63,14 @@ function Comment({ MovieId }) {
 
     //update
 
-    const handleUpdateContent = async (id, content) => {
+    const handleUpdateContent = async (id, content, userID , movieID) => {
         const elementContent = document.getElementById(id);
         if (content != elementContent.innerText) {
             try {
-                await updateComment(id, { content: elementContent.innerText });
+                await updateComment(id, { content: elementContent.innerText ,
+                                          user: userID,
+                                          movie: movieID
+                },user);
                 getComment();
                 setShowUpdateBtn(null);
                 showToastMessage('success', 'Cập nhật thành công');
@@ -86,7 +92,7 @@ function Comment({ MovieId }) {
 
     const handleDeleteCmt = async (id) => {
         try {
-            await deleteComment(id);
+            await deleteComment(id,user);
             getComment();
             showToastMessage('success', 'Đã xóa thành công');
             // if (id == showUpdateBtn) setShowUpdateBtn(null);
@@ -107,7 +113,7 @@ function Comment({ MovieId }) {
                         }}
                         style={{ display: 'flex', alignItems: 'center', width: '100%' }}
                     >
-                        <img src={user.avatar || image.avatar} alt="" className={cs('avatarImg')} />
+                        <img src={avatar || image.avatar} alt="" className={cs('avatarImg')} />
                         <input
                             type="text"
                             className={cs('InputComment')}
@@ -141,20 +147,20 @@ function Comment({ MovieId }) {
                             comments.map((comment, index) => (
                                 <li key={index} className={cs('commentItem')}>
                                     <img
-                                        src={comment.userId.avatar || image.avatar}
+                                        src={'http://localhost:8080/images/'+comment.user.avatar || image.avatar}
                                         alt=""
                                         className={cs('avatarImg')}
                                     />
                                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                                         <div className={cs('commentItem-wrap')}>
-                                            <h2>{comment.userId.name}</h2>
+                                            <h2>{comment.user.name}</h2>
                                             <p
                                                 className={cs('contentComment')}
-                                                contentEditable={comment._id == showUpdateBtn}
+                                                contentEditable={comment.id == showUpdateBtn}
                                                 suppressContentEditableWarning={true}
-                                                id={comment._id}
+                                                id={comment.id}
                                                 style={
-                                                    comment._id == showUpdateBtn
+                                                    comment.id == showUpdateBtn
                                                         ? {
                                                               outline: '2px solid rgba(22, 24, 35, 0.2)',
                                                               borderRadius: '10px',
@@ -165,7 +171,7 @@ function Comment({ MovieId }) {
                                             >
                                                 {comment.content}
                                             </p>
-                                            {comment._id == showUpdateBtn && (
+                                            {comment.id == showUpdateBtn && (
                                                 <button
                                                     style={{
                                                         display: 'block',
@@ -173,16 +179,16 @@ function Comment({ MovieId }) {
                                                         color: 'black',
                                                         marginLeft: '10px',
                                                     }}
-                                                    onClick={() => handleCancle(comment._id, comment.content)}
+                                                    onClick={() => handleCancle(comment.id, comment.content)}
                                                 >
                                                     Hủy
                                                 </button>
                                             )}
 
-                                            {comment._id == showUpdateBtn && (
+                                            {comment.id == showUpdateBtn && (
                                                 <button
                                                     style={{ display: 'block' }}
-                                                    onClick={() => handleUpdateContent(comment._id, comment.content)}
+                                                    onClick={() => handleUpdateContent(comment.id, comment.content, comment.user.id , comment.movie.id)}
                                                 >
                                                     Cập nhật
                                                 </button>
@@ -192,11 +198,11 @@ function Comment({ MovieId }) {
                                             {moment(comment.createdAt).fromNow().replace('vài giây trước', 'vừa xong')}
                                         </span>
                                     </div>
-                                    {user && comment.userId._id == user.id && (
+                                    {user && comment.user.id == id && (
                                         <div>
                                             <Tippy
                                                 interactive
-                                                visible={menu && comment._id == cmtId}
+                                                visible={menu && comment.id == cmtId}
                                                 offset={[0, -2]}
                                                 delay={[0, 700]}
                                                 placement="bottom"
@@ -207,7 +213,7 @@ function Comment({ MovieId }) {
                                                                 className={cs('btn')}
                                                                 onClick={() => {
                                                                     setMenu(false);
-                                                                    setShowUpdateBtn(comment._id);
+                                                                    setShowUpdateBtn(comment.id);
                                                                 }}
                                                             >
                                                                 Sửa
@@ -215,7 +221,7 @@ function Comment({ MovieId }) {
                                                             <button
                                                                 onClick={() => {
                                                                     setMenu(false);
-                                                                    handleDeleteCmt(comment._id);
+                                                                    handleDeleteCmt(comment.id);
                                                                 }}
                                                                 className={cs('btn')}
                                                             >
@@ -229,7 +235,7 @@ function Comment({ MovieId }) {
                                                 <i
                                                     onClick={() => {
                                                         setMenu((menu) => !menu);
-                                                        setCmtId(comment._id);
+                                                        setCmtId(comment.id);
                                                     }}
                                                     className={cs('iconSend')}
                                                 >

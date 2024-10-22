@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import styles from './Similar.module.scss';
 import classNames from 'classnames/bind';
 
-import requestApi from '~/apiService';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Img } from '~/apiService/instance';
 import Skeleton from 'react-loading-skeleton';
+import { getMovieByCategory } from '~/apiService/movie'; 
 
 const cs = classNames.bind(styles);
 
@@ -15,8 +15,8 @@ function SimilarMovie({ category, slug }) {
 
     useEffect(() => {
         async function getCast() {
-            const result = await requestApi.getSimilar(slug);
-            setSimilar(result.data);
+            const result = await getMovieByCategory(category);
+            setSimilar(result.results);
             setLoading(false);
         }
         getCast();
@@ -35,8 +35,8 @@ function SimilarMovie({ category, slug }) {
                           ))
                     : similar.map((list, index) => (
                           <SwiperSlide key={index} className={cs('swiperItem')}>
-                              <a href={`/${category}/${list.slug}`}>
-                                  <img className={cs('movieImg')} src={Img.baseImg(list.backdrop_path)} alt="" />
+                              <a href={`/detail/${list.id}`}>
+                                  <img className={cs('movieImg')} src={'http://localhost:8080/images/'+list.backdrop_path} alt="" />
                                   <span>{list.name}</span>
                               </a>
                           </SwiperSlide>

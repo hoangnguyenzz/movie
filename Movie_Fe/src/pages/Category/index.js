@@ -1,8 +1,8 @@
 import SlideShow from '~/layout/component/Slide';
 import ListMovie from '~/layout/component/ListMovie';
 import { movieType, tvType } from '~/apiService';
-
-import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import {useNavigate, Link, useParams } from 'react-router-dom';
 import styles from './category.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +13,18 @@ const cs = classNames.bind(styles);
 function Category() {
     const { category } = useParams();
 
+    const navigate = useNavigate(); 
+
     if (category === 'movie') {
         var categoryType = movieType;
     } else {
         categoryType = tvType;
     }
+    useEffect(() => {
+        if (!category) {
+            navigate('/movie');
+        }
+    }, [category, navigate]);
     return (
         <div className={cs('wrapper')}>
             <SlideShow category={category} />

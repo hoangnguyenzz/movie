@@ -8,9 +8,9 @@ const allRoute = [
     { path: '/', component: Category },
     { path: '/profile', component: Profile },
     { path: '/:category', component: Category },
-    { path: '/:category/:slug', component: Detail },
+    { path: '/detail/:id', component: Detail },
     { path: '/:category/mores/:type', component: GridType },
     { path: '/genres/:name/:id', component: GridType },
-    { path: '/:category/:id/watch/:slug', component: WatchMovie },
+    { path: '/:category/watch/:id', component: WatchMovie },
 ];
 export default allRoute;

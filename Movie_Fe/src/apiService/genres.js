@@ -1,19 +1,13 @@
 import instance from './instance';
 
-export const getAll = (currPage, limit = null,token) => {
+export const getAll = (currPage, limit = null) => {
     let url;
     if (limit) {
         url = `/genre?page=${currPage}&limit=${limit}`;
     } else {
         url = `/genre?page=${currPage}`;
     }
-    return instance.get(url,
-        {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }
-    );
+    return instance.get(url);
 };
 
 export const getMulti = (slug) => {

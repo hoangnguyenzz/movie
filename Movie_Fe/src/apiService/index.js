@@ -26,9 +26,9 @@ const requestApi = {
         const url = `tv/${type}`;
         return instance.get(url, params);
     },
-    getSearch(params) {
-        const url = '/get-all';
-        return instance.get(url, params); //?keyword=
+    getSearch(keyword) {
+        const url = `/movie/search-movie?keyword=${keyword}`;
+        return instance.get(url); //?keyword=
     },
     getDetails(slug) {
         const url = `/get-detail/${slug}`;
@@ -44,9 +44,15 @@ const requestApi = {
         return instance.get(url);
     },
 
-    getFavoritesList(id) {
-        const url = `/user/user-favorites/${id}`;
-        return instance.get(url);
+    getFavoritesList(id, token) {
+        const url = `/favorite/check/${id}`;
+        return instance.get(url,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }
+        );
     },
     getHistoryList(id) {
         const url = `/user/user-history/${id}`;
